@@ -157,9 +157,21 @@
             padding-top: 4px;
         }
 
+        #loading #loading-image {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            z-index: 10000;
+            background: #e9e9e9;
+            opacity: 0.2;
+        }
     </style>
 </head>
 <body>
+<div id="loading">
+    <img id="loading-image" src="E:\Projects\newman-reporter-htmlextra\lib\Spinner-1s-200px.svg" alt="Loading..."/>
+</div>
 <div class="container">
     {{#with summary}}
     <div class="card">
@@ -199,7 +211,7 @@
             <div class="row">
                 {{#with summary}}
                 <div class="col-md-9 col-lg-12 main">
-                    <h1 class="display-{{titleSize}} text-center">{{title}} Hello world</h1>
+                    <h1 class="display-{{titleSize}} text-center">{{title}}</h1>
                     <h4 class="text-center">{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}</h4>
                     <div class="row">
                         <div class="col-lg-3 col-md-6">
@@ -819,6 +831,7 @@
             $("[data-toggle='collapse'][id^='folder-']").addClass('collapsed');
             $("[id^='folder-collapse-").removeClass('show');
         });
+        $('#loading').hide();
     });
 </script>
 
@@ -917,7 +930,7 @@
     window.onload = function () {
 // TODO this is the iterations setup??
 // hides all blocks of response
-        var allItems = document.querySelectorAll('[class*=iteration-]');
+        let allItems = document.querySelectorAll('[class*=iteration-]');
         allItems.forEach(function (elem) {
             elem.style.display = 'none';
         });
@@ -928,7 +941,7 @@
 
         let menu = document.querySelector('#execution-menu .nav');
 
-        for (var i = 0; i < totalIterations; i++) {
+        for (let i = 0; i < totalIterations; i++) {
             let li = document.createElement('li');
             li.appendChild(document.createTextNode((i + 1)));
             li.setAttribute('id', 'iteration-' + i);
@@ -939,18 +952,18 @@
                 let allItems = document.querySelectorAll('[class*=iteration-]');
                 allItems.forEach(function (elem) {
                     elem.style.display = 'none';
-                })
+                });
 
                 let allMenus = document.querySelectorAll('[id*=iteration-');
                 allMenus.forEach(function (elem) {
                     elem.style.borderBottom = 'none';
-                })
+                });
 
                 this.style.borderBottom = 'solid 1px #032a33';
 
                 let items = document.querySelectorAll("." + this.id);
                 items.forEach(function (elem) {
-                    elem.style.display = elem.style.display == 'block' ? 'none' : 'block';
+                    elem.style.display = elem.style.display === 'block' ? 'none' : 'block';
                 })
             });
 
