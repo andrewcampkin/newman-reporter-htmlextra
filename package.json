@@ -1,6 +1,6 @@
 {
   "name": "newman-reporter-htmlextra",
-  "version": "1.7.5",
+  "version": "1.19.2",
   "description": "A newman reporter with added handlebars helpers and separated request iterations",
   "main": "index.js",
   "preferGlobal": true,
@@ -9,7 +9,10 @@
     "test-integration": "node npm/test-integration.js",
     "test-lint": "node npm/test-lint.js",
     "test-system": "node npm/test-system.js",
-    "pre-publish": "node npm/test-all.js && npm pack"
+    "pre-publish": "node npm/test-all.js && npm pack",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect",
+    "local-dev": "npm link && cd node_modules/newman && npm link newman-reporter-htmlextra && cd ../.."
   },
   "deprecated": false,
   "repository": {
@@ -23,13 +26,20 @@
     "html",
     "htmlextra"
   ],
+  "bin": {
+    "newman-reporter-htmlextra": "./bin/htmlextra.js"
+  },
   "dependencies": {
-    "filesize": "^4.1.2",
-    "handlebars": "^4.1.2",
+    "chalk": "^4.1.0",
+    "commander": "^6.1.0",
+    "filesize": "^6.1.0",
+    "handlebars": "^4.7.6",
     "handlebars-helpers": "^0.10.0",
-    "helper-moment": "^0.2.0",
-    "lodash": "^4.17.11",
-    "pretty-ms": "^5.0.0"
+    "lodash": "^4.17.20",
+    "moment-timezone": "^0.5.31",
+    "ora": "^5.1.0",
+    "pretty-ms": "^6.0.1",
+    "snyk": "^1.393.0"
   },
   "author": "Danny Dainton",
   "license": "Apache-2.0",
@@ -40,21 +50,21 @@
     "newman": ">=4"
   },
   "devDependencies": {
-    "async": "^3.1.0",
+    "async": "^3.2.0",
     "chai": "^4.2.0",
-    "colors": "^1.3.3",
-    "eslint": "^6.0.1",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-jsdoc": "8.6.0",
-    "eslint-plugin-lodash": "^5.1.0",
-    "eslint-plugin-markdown": "^1.0.0",
-    "eslint-plugin-mocha": "^5.3.0",
+    "colors": "^1.4.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsdoc": "8.7.0",
+    "eslint-plugin-lodash": "^7.0.0",
+    "eslint-plugin-markdown": "^1.0.2",
+    "eslint-plugin-mocha": "^6.3.0",
     "eslint-plugin-security": "^1.4.0",
-    "mocha": "^6.1.4",
-    "newman": "^4.5.1",
-    "packity": "^0.3.2",
+    "mocha": "^7.2.0",
+    "newman": "^5.2.0",
     "parse-gitignore": "^1.0.1",
     "recursive-readdir": "^2.2.2",
-    "shelljs": "^0.8.3"
-  }
+    "shelljs": "^0.8.4"
+  },
+  "snyk": true
 }
